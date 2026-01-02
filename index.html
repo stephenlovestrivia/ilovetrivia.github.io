@@ -3,45 +3,43 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Trivia Quiz</title>
+  <title>Stephen Loves Trivia</title>
 
   <style>
     :root{
-      --border-img-width: 140px;  /* change to make side borders wider/narrower */
-      --content-max: 820px;       /* max width of the text column */
-      --page-pad: 28px;           /* padding around content */
-      --row-gap: 14px;            /* space between question rows */
+      --border-total: 40vw;         /* BOTH borders together = 40% of screen */
+      --content-max: 820px;
+      --page-pad: 28px;
+      --row-gap: 26px;
+      --divider-thick: 6px;
     }
 
     body{
       margin: 0;
       font-family: Arial, sans-serif;
-      line-height: 1.5;
+      line-height: 1.6;
       color: #111;
       background: #fff;
+      text-align: center;          /* CENTER ALL TEXT */
     }
 
-    /* Full-page layout: left image border | content | right image border */
     .page{
       min-height: 100vh;
       display: grid;
-      grid-template-columns: var(--border-img-width) 1fr var(--border-img-width);
+      grid-template-columns: calc(var(--border-total) / 2) 1fr calc(var(--border-total) / 2);
     }
 
-    /* Side borders: use your uploaded image files here */
     .border{
-      background-image: url("Van_Gogh_30193.jpg"); /* <-- put your image path here */
+      background-image: url("Van_Gogh_30193.jpg");
       background-repeat: repeat-y;
-      background-size: 100% auto;   /* stretch to fit width */
+      background-size: cover;
       background-position: top center;
     }
 
-    /* Flip the right border so it mirrors the left (optional) */
     .border.right{
       transform: scaleX(-1);
     }
 
-    /* Main content column */
     .content{
       padding: var(--page-pad);
       display: flex;
@@ -53,53 +51,109 @@
       max-width: var(--content-max);
     }
 
+    /* Top nav */
+    .nav{
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 14px 0 22px 0;
+      border-bottom: 1px solid #e6e6e6;
+      margin-bottom: 22px;
+    }
+
+    .brand{
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+
+    .links{
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .links a{
+      color: #111;
+      text-decoration: none;
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      font-size: 14px;
+      background: #fff;
+    }
+
+    .links a:hover{
+      border-color: #111;
+    }
+
     h1{
-      margin: 0 0 18px 0;
-      font-size: 44px; /* big title */
-      letter-spacing: 0.2px;
+      margin: 0 0 10px 0;
+      font-size: 44px;
+      letter-spacing: 0.3px;
     }
 
     .meta{
-      margin: 0 0 24px 0;
-      opacity: 0.7;
+      margin: 0 0 26px 0;
+      opacity: 0.75;
+      font-size: 14px;
     }
 
-    /* Questions list: each question gets its own spaced row */
+    /* QUESTIONS */
     .questions{
+      list-style-position: inside;   /* keep numbers centered */
       margin: 0;
-      padding-left: 22px;
+      padding: 0;
       display: grid;
       row-gap: var(--row-gap);
-      font-size: 18px;
+      font-size: 19px;
     }
 
-    /* Answers at the end */
+    /* ANSWERS */
     .answers{
-      margin-top: 34px;
-      padding-top: 18px;
-      border-top: 1px solid #ddd;
+      margin-top: 40px;
+      padding-top: 26px;
+      border-top: var(--divider-thick) solid #000;
     }
 
     .answers h2{
-      margin: 0 0 12px 0;
-      font-size: 24px;
+      margin: 0 0 16px 0;
+      font-size: 26px;
     }
 
     .answers ol{
+      list-style-position: inside;
       margin: 0;
-      padding-left: 22px;
+      padding: 0;
       display: grid;
-      row-gap: 10px;
+      row-gap: 16px;
+      font-size: 17px;
     }
 
-    /* Mobile: shrink borders so you still have room for text */
-    @media (max-width: 700px){
+    footer{
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #e6e6e6;
+      opacity: 0.75;
+      font-size: 13px;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 900px){
       :root{
-        --border-img-width: 70px;
+        --border-total: 22vw;
         --page-pad: 18px;
       }
       h1{ font-size: 34px; }
-      .questions{ font-size: 16px; }
+      .questions{ font-size: 17px; }
+    }
+
+    @media (max-width: 520px){
+      :root{
+        --border-total: 16vw;
+      }
     }
   </style>
 </head>
@@ -110,6 +164,17 @@
 
     <main class="content">
       <div class="card">
+        <div class="nav">
+          <div class="brand">Stephen Loves Trivia</div>
+          <div class="links">
+            <a href="#">Archive</a>
+            <a href="#">Categories</a>
+            <a href="#">Submit a Question</a>
+            <a href="#">About</a>
+            <a href="#">Newsletter</a>
+          </div>
+        </div>
+
         <h1>Weekly Trivia — Quiz #1</h1>
         <p class="meta">7 Questions • January 2, 2026</p>
 
@@ -135,6 +200,10 @@
             <li>Answer 7</li>
           </ol>
         </section>
+
+        <footer>
+          © 2026 Stephen Loves Trivia • Built with GitHub Pages
+        </footer>
       </div>
     </main>
 
@@ -142,4 +211,3 @@
   </div>
 </body>
 </html>
-
