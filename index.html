@@ -1,19 +1,145 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>My Site</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trivia Quiz</title>
+
   <style>
-    body {
+    :root{
+      --border-img-width: 140px;  /* change to make side borders wider/narrower */
+      --content-max: 820px;       /* max width of the text column */
+      --page-pad: 28px;           /* padding around content */
+      --row-gap: 14px;            /* space between question rows */
+    }
+
+    body{
+      margin: 0;
       font-family: Arial, sans-serif;
-      max-width: 700px;
-      margin: 60px auto;
-      line-height: 1.6;
+      line-height: 1.5;
+      color: #111;
+      background: #fff;
+    }
+
+    /* Full-page layout: left image border | content | right image border */
+    .page{
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: var(--border-img-width) 1fr var(--border-img-width);
+    }
+
+    /* Side borders: use your uploaded image files here */
+    .border{
+      background-image: url("images/border.png"); /* <-- put your image path here */
+      background-repeat: repeat-y;
+      background-size: 100% auto;   /* stretch to fit width */
+      background-position: top center;
+    }
+
+    /* Flip the right border so it mirrors the left (optional) */
+    .border.right{
+      transform: scaleX(-1);
+    }
+
+    /* Main content column */
+    .content{
+      padding: var(--page-pad);
+      display: flex;
+      justify-content: center;
+    }
+
+    .card{
+      width: 100%;
+      max-width: var(--content-max);
+    }
+
+    h1{
+      margin: 0 0 18px 0;
+      font-size: 44px; /* big title */
+      letter-spacing: 0.2px;
+    }
+
+    .meta{
+      margin: 0 0 24px 0;
+      opacity: 0.7;
+    }
+
+    /* Questions list: each question gets its own spaced row */
+    .questions{
+      margin: 0;
+      padding-left: 22px;
+      display: grid;
+      row-gap: var(--row-gap);
+      font-size: 18px;
+    }
+
+    /* Answers at the end */
+    .answers{
+      margin-top: 34px;
+      padding-top: 18px;
+      border-top: 1px solid #ddd;
+    }
+
+    .answers h2{
+      margin: 0 0 12px 0;
+      font-size: 24px;
+    }
+
+    .answers ol{
+      margin: 0;
+      padding-left: 22px;
+      display: grid;
+      row-gap: 10px;
+    }
+
+    /* Mobile: shrink borders so you still have room for text */
+    @media (max-width: 700px){
+      :root{
+        --border-img-width: 70px;
+        --page-pad: 18px;
+      }
+      h1{ font-size: 34px; }
+      .questions{ font-size: 16px; }
     }
   </style>
 </head>
+
 <body>
-  <h1>Welcome</h1>
-  <p>This is my website.</p>
+  <div class="page">
+    <div class="border left" aria-hidden="true"></div>
+
+    <main class="content">
+      <div class="card">
+        <h1>Weekly Trivia — Quiz #1</h1>
+        <p class="meta">7 Questions • January 2, 2026</p>
+
+        <ol class="questions">
+          <li>Question one goes here?</li>
+          <li>Question two goes here?</li>
+          <li>Question three goes here?</li>
+          <li>Question four goes here?</li>
+          <li>Question five goes here?</li>
+          <li>Question six goes here?</li>
+          <li>Question seven goes here?</li>
+        </ol>
+
+        <section class="answers">
+          <h2>Answers</h2>
+          <ol>
+            <li>Answer 1</li>
+            <li>Answer 2</li>
+            <li>Answer 3</li>
+            <li>Answer 4</li>
+            <li>Answer 5</li>
+            <li>Answer 6</li>
+            <li>Answer 7</li>
+          </ol>
+        </section>
+      </div>
+    </main>
+
+    <div class="border right" aria-hidden="true"></div>
+  </div>
 </body>
 </html>
+
